@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A9070C5A1DEA108C000B94D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9070C591DEA108C000B94D0 /* AppDelegate.swift */; };
-		A9070C5C1DEA108C000B94D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9070C5B1DEA108C000B94D0 /* ViewController.swift */; };
-		A9070C5F1DEA108C000B94D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9070C5D1DEA108C000B94D0 /* Main.storyboard */; };
 		A9070C611DEA108C000B94D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9070C601DEA108C000B94D0 /* Assets.xcassets */; };
 		A9070C641DEA108C000B94D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9070C621DEA108C000B94D0 /* LaunchScreen.storyboard */; };
 		A9070C6F1DEA108C000B94D0 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9070C6E1DEA108C000B94D0 /* WeatherTests.swift */; };
@@ -20,6 +18,20 @@
 		A9070C8D1DEA123E000B94D0 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A9070C8B1DEA123E000B94D0 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A9070C8F1DEA124A000B94D0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9070C8E1DEA124A000B94D0 /* Alamofire.framework */; };
 		A9070C901DEA124A000B94D0 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A9070C8E1DEA124A000B94D0 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A9070C9F1DEA1BF5000B94D0 /* WeatherStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9070C9E1DEA1BF5000B94D0 /* WeatherStoryboard.storyboard */; };
+		A9070CA11DEA1C3E000B94D0 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9070CA01DEA1C3D000B94D0 /* WeatherViewController.swift */; };
+		A910F17C1DEA26F70033F1B5 /* NSMutableArray+JBStack.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F17B1DEA26F70033F1B5 /* NSMutableArray+JBStack.m */; };
+		A910F1801DEA272E0033F1B5 /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F17F1DEA272E0033F1B5 /* JBChartView.m */; };
+		A910F1831DEA27470033F1B5 /* JBGradientLineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F1821DEA27470033F1B5 /* JBGradientLineLayer.m */; };
+		A910F1881DEA27540033F1B5 /* JBLineChartDotsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F1851DEA27540033F1B5 /* JBLineChartDotsView.m */; };
+		A910F1891DEA27540033F1B5 /* JBLineChartDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F1871DEA27540033F1B5 /* JBLineChartDotView.m */; };
+		A910F18C1DEA275B0033F1B5 /* JBLineChartLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F18B1DEA275B0033F1B5 /* JBLineChartLine.m */; };
+		A910F18F1DEA27600033F1B5 /* JBLineChartLinesView.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F18E1DEA27600033F1B5 /* JBLineChartLinesView.m */; };
+		A910F1921DEA276B0033F1B5 /* JBLineChartPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F1911DEA276B0033F1B5 /* JBLineChartPoint.m */; };
+		A910F1951DEA27700033F1B5 /* JBShapeLineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F1941DEA27700033F1B5 /* JBShapeLineLayer.m */; };
+		A910F1981DEA27780033F1B5 /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F1971DEA27780033F1B5 /* JBLineChartView.m */; };
+		A910F19A1DEA2B030033F1B5 /* WeatherSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A910F1991DEA2B030033F1B5 /* WeatherSnapshot.swift */; };
+		A910F19C1DEA2F090033F1B5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A910F19B1DEA2F090033F1B5 /* Networking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +70,6 @@
 /* Begin PBXFileReference section */
 		A9070C561DEA108C000B94D0 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9070C591DEA108C000B94D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A9070C5B1DEA108C000B94D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A9070C5E1DEA108C000B94D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9070C601DEA108C000B94D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9070C631DEA108C000B94D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9070C651DEA108C000B94D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +82,31 @@
 		A9070C871DEA1237000B94D0 /* Mantle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mantle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9070C8B1DEA123E000B94D0 /* Marshal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9070C8E1DEA124A000B94D0 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9070C9E1DEA1BF5000B94D0 /* WeatherStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WeatherStoryboard.storyboard; sourceTree = "<group>"; };
+		A9070CA01DEA1C3D000B94D0 /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		A910F17A1DEA26F70033F1B5 /* NSMutableArray+JBStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+JBStack.h"; sourceTree = "<group>"; };
+		A910F17B1DEA26F70033F1B5 /* NSMutableArray+JBStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+JBStack.m"; sourceTree = "<group>"; };
+		A910F17D1DEA27040033F1B5 /* Weather-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Weather-Bridging-Header.h"; sourceTree = "<group>"; };
+		A910F17E1DEA272E0033F1B5 /* JBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartView.h; sourceTree = "<group>"; };
+		A910F17F1DEA272E0033F1B5 /* JBChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartView.m; sourceTree = "<group>"; };
+		A910F1811DEA27470033F1B5 /* JBGradientLineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBGradientLineLayer.h; sourceTree = "<group>"; };
+		A910F1821DEA27470033F1B5 /* JBGradientLineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBGradientLineLayer.m; sourceTree = "<group>"; };
+		A910F1841DEA27540033F1B5 /* JBLineChartDotsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartDotsView.h; sourceTree = "<group>"; };
+		A910F1851DEA27540033F1B5 /* JBLineChartDotsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartDotsView.m; sourceTree = "<group>"; };
+		A910F1861DEA27540033F1B5 /* JBLineChartDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartDotView.h; sourceTree = "<group>"; };
+		A910F1871DEA27540033F1B5 /* JBLineChartDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartDotView.m; sourceTree = "<group>"; };
+		A910F18A1DEA275B0033F1B5 /* JBLineChartLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartLine.h; sourceTree = "<group>"; };
+		A910F18B1DEA275B0033F1B5 /* JBLineChartLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartLine.m; sourceTree = "<group>"; };
+		A910F18D1DEA27600033F1B5 /* JBLineChartLinesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartLinesView.h; sourceTree = "<group>"; };
+		A910F18E1DEA27600033F1B5 /* JBLineChartLinesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartLinesView.m; sourceTree = "<group>"; };
+		A910F1901DEA276B0033F1B5 /* JBLineChartPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartPoint.h; sourceTree = "<group>"; };
+		A910F1911DEA276B0033F1B5 /* JBLineChartPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartPoint.m; sourceTree = "<group>"; };
+		A910F1931DEA27700033F1B5 /* JBShapeLineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBShapeLineLayer.h; sourceTree = "<group>"; };
+		A910F1941DEA27700033F1B5 /* JBShapeLineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBShapeLineLayer.m; sourceTree = "<group>"; };
+		A910F1961DEA27780033F1B5 /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
+		A910F1971DEA27780033F1B5 /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
+		A910F1991DEA2B030033F1B5 /* WeatherSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherSnapshot.swift; sourceTree = "<group>"; };
+		A910F19B1DEA2F090033F1B5 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,12 +163,15 @@
 		A9070C581DEA108C000B94D0 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				A9070C941DEA1992000B94D0 /* JBChartView */,
+				A9070C931DEA13EC000B94D0 /* View */,
+				A9070C921DEA13DF000B94D0 /* Networking */,
+				A9070C911DEA13D9000B94D0 /* Model */,
 				A9070C591DEA108C000B94D0 /* AppDelegate.swift */,
-				A9070C5B1DEA108C000B94D0 /* ViewController.swift */,
-				A9070C5D1DEA108C000B94D0 /* Main.storyboard */,
 				A9070C601DEA108C000B94D0 /* Assets.xcassets */,
 				A9070C621DEA108C000B94D0 /* LaunchScreen.storyboard */,
 				A9070C651DEA108C000B94D0 /* Info.plist */,
+				A910F17D1DEA27040033F1B5 /* Weather-Bridging-Header.h */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -154,6 +192,106 @@
 				A9070C7B1DEA108C000B94D0 /* Info.plist */,
 			);
 			path = WeatherUITests;
+			sourceTree = "<group>";
+		};
+		A9070C911DEA13D9000B94D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A910F1991DEA2B030033F1B5 /* WeatherSnapshot.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A9070C921DEA13DF000B94D0 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A910F19B1DEA2F090033F1B5 /* Networking.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A9070C931DEA13EC000B94D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9070C9E1DEA1BF5000B94D0 /* WeatherStoryboard.storyboard */,
+				A9070CA01DEA1C3D000B94D0 /* WeatherViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9070C941DEA1992000B94D0 /* JBChartView */ = {
+			isa = PBXGroup;
+			children = (
+				A9070CA41DEA2664000B94D0 /* Line */,
+				A9070CA31DEA2660000B94D0 /* Base */,
+				A9070CA21DEA265B000B94D0 /* Additions */,
+			);
+			path = JBChartView;
+			sourceTree = "<group>";
+		};
+		A9070CA21DEA265B000B94D0 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				A910F17A1DEA26F70033F1B5 /* NSMutableArray+JBStack.h */,
+				A910F17B1DEA26F70033F1B5 /* NSMutableArray+JBStack.m */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
+		A9070CA31DEA2660000B94D0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A910F17E1DEA272E0033F1B5 /* JBChartView.h */,
+				A910F17F1DEA272E0033F1B5 /* JBChartView.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		A9070CA41DEA2664000B94D0 /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				A9070CA71DEA2670000B94D0 /* Views */,
+				A9070CA61DEA266C000B94D0 /* Models */,
+				A9070CA51DEA2668000B94D0 /* Layers */,
+			);
+			name = Line;
+			sourceTree = "<group>";
+		};
+		A9070CA51DEA2668000B94D0 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				A910F1931DEA27700033F1B5 /* JBShapeLineLayer.h */,
+				A910F1941DEA27700033F1B5 /* JBShapeLineLayer.m */,
+				A910F1811DEA27470033F1B5 /* JBGradientLineLayer.h */,
+				A910F1821DEA27470033F1B5 /* JBGradientLineLayer.m */,
+			);
+			name = Layers;
+			sourceTree = "<group>";
+		};
+		A9070CA61DEA266C000B94D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A910F1901DEA276B0033F1B5 /* JBLineChartPoint.h */,
+				A910F1911DEA276B0033F1B5 /* JBLineChartPoint.m */,
+				A910F18A1DEA275B0033F1B5 /* JBLineChartLine.h */,
+				A910F18B1DEA275B0033F1B5 /* JBLineChartLine.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A9070CA71DEA2670000B94D0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A910F1961DEA27780033F1B5 /* JBLineChartView.h */,
+				A910F1971DEA27780033F1B5 /* JBLineChartView.m */,
+				A910F18D1DEA27600033F1B5 /* JBLineChartLinesView.h */,
+				A910F18E1DEA27600033F1B5 /* JBLineChartLinesView.m */,
+				A910F1841DEA27540033F1B5 /* JBLineChartDotsView.h */,
+				A910F1851DEA27540033F1B5 /* JBLineChartDotsView.m */,
+				A910F1861DEA27540033F1B5 /* JBLineChartDotView.h */,
+				A910F1871DEA27540033F1B5 /* JBLineChartDotView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +364,7 @@
 					A9070C551DEA108C000B94D0 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 429BU58AR4;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 					A9070C691DEA108C000B94D0 = {
@@ -267,9 +406,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9070C9F1DEA1BF5000B94D0 /* WeatherStoryboard.storyboard in Resources */,
 				A9070C641DEA108C000B94D0 /* LaunchScreen.storyboard in Resources */,
 				A9070C611DEA108C000B94D0 /* Assets.xcassets in Resources */,
-				A9070C5F1DEA108C000B94D0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,8 +433,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9070C5C1DEA108C000B94D0 /* ViewController.swift in Sources */,
+				A910F19A1DEA2B030033F1B5 /* WeatherSnapshot.swift in Sources */,
+				A910F1881DEA27540033F1B5 /* JBLineChartDotsView.m in Sources */,
+				A910F1981DEA27780033F1B5 /* JBLineChartView.m in Sources */,
+				A910F18F1DEA27600033F1B5 /* JBLineChartLinesView.m in Sources */,
+				A910F18C1DEA275B0033F1B5 /* JBLineChartLine.m in Sources */,
+				A9070CA11DEA1C3E000B94D0 /* WeatherViewController.swift in Sources */,
+				A910F17C1DEA26F70033F1B5 /* NSMutableArray+JBStack.m in Sources */,
+				A910F1921DEA276B0033F1B5 /* JBLineChartPoint.m in Sources */,
+				A910F1801DEA272E0033F1B5 /* JBChartView.m in Sources */,
 				A9070C5A1DEA108C000B94D0 /* AppDelegate.swift in Sources */,
+				A910F1831DEA27470033F1B5 /* JBGradientLineLayer.m in Sources */,
+				A910F1891DEA27540033F1B5 /* JBLineChartDotView.m in Sources */,
+				A910F1951DEA27700033F1B5 /* JBShapeLineLayer.m in Sources */,
+				A910F19C1DEA2F090033F1B5 /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,14 +482,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A9070C5D1DEA108C000B94D0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A9070C5E1DEA108C000B94D0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A9070C621DEA108C000B94D0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -396,6 +539,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -438,6 +582,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -447,12 +592,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 429BU58AR4;
 				INFOPLIST_FILE = Weather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nlambson.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "Weather/Weather-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -460,12 +609,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 429BU58AR4;
 				INFOPLIST_FILE = Weather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nlambson.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "Weather/Weather-Bridging-Header.h";
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};
@@ -546,6 +698,7 @@
 				A9070C801DEA108C000B94D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A9070C811DEA108C000B94D0 /* Build configuration list for PBXNativeTarget "WeatherTests" */ = {
 			isa = XCConfigurationList;
@@ -554,6 +707,7 @@
 				A9070C831DEA108C000B94D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A9070C841DEA108C000B94D0 /* Build configuration list for PBXNativeTarget "WeatherUITests" */ = {
 			isa = XCConfigurationList;
@@ -562,6 +716,7 @@
 				A9070C861DEA108C000B94D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

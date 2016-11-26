@@ -1,0 +1,3 @@
+github "Alamofire/AlamoFire" "4.2.0"
+github "Mantle/Mantle" "2.1.0"
+github "utahiosmac/Marshal" "1.1"

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "container:"
+      name = "Carthage">
+      <FileRef
+         location = "group:Carthage/Checkouts/Marshal/Marshal.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/Mantle/Mantle.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/AlamoFire/Alamofire.xcodeproj">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:Weather/Weather.xcodeproj">
+   </FileRef>
+</Workspace>
