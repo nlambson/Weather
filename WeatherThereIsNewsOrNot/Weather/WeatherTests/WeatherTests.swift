@@ -1,15 +1,15 @@
 //
-//  WeatherThereIsNewsOrNotTests.swift
-//  WeatherThereIsNewsOrNotTests
+//  WeatherTests.swift
+//  WeatherTests
 //
-//  Created by Nathan Lambson on 11/25/16.
+//  Created by Nathan Lambson on 11/26/16.
 //  Copyright © 2016 Nathan Lambson. All rights reserved.
 //
 
 import XCTest
-@testable import WeatherThereIsNewsOrNot
+@testable import Weather
 
-class WeatherThereIsNewsOrNotTests: XCTestCase {
+class WeatherTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  WeatherThereIsNewsOrNot
+//  Weather
 //
-//  Created by Nathan Lambson on 11/25/16.
+//  Created by Nathan Lambson on 11/26/16.
 //  Copyright © 2016 Nathan Lambson. All rights reserved.
 //
 
