@@ -9,8 +9,9 @@
 import Foundation
 import Marshal
 
-protocol WeatherSnapshotDataSource {
+protocol WeatherDataSource {
     func next(latest: WeatherSnapshot)
+    func future(minutely: [MinuteForecast])
 }
 
 struct WeatherSnapshot: Unmarshaling {

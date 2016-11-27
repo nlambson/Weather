@@ -30,6 +30,7 @@
 		A910F1981DEA27780033F1B5 /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = A910F1971DEA27780033F1B5 /* JBLineChartView.m */; };
 		A910F19A1DEA2B030033F1B5 /* WeatherSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A910F1991DEA2B030033F1B5 /* WeatherSnapshot.swift */; };
 		A910F19C1DEA2F090033F1B5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A910F19B1DEA2F090033F1B5 /* Networking.swift */; };
+		A99E221D1DEAE59F00AC23A8 /* MinuteForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99E221C1DEAE59F00AC23A8 /* MinuteForecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		A910F1971DEA27780033F1B5 /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
 		A910F1991DEA2B030033F1B5 /* WeatherSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherSnapshot.swift; sourceTree = "<group>"; };
 		A910F19B1DEA2F090033F1B5 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		A99E221C1DEAE59F00AC23A8 /* MinuteForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinuteForecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				A910F1991DEA2B030033F1B5 /* WeatherSnapshot.swift */,
+				A99E221C1DEAE59F00AC23A8 /* MinuteForecast.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				A9070C5A1DEA108C000B94D0 /* AppDelegate.swift in Sources */,
 				A910F1831DEA27470033F1B5 /* JBGradientLineLayer.m in Sources */,
 				A910F1891DEA27540033F1B5 /* JBLineChartDotView.m in Sources */,
+				A99E221D1DEAE59F00AC23A8 /* MinuteForecast.swift in Sources */,
 				A910F1951DEA27700033F1B5 /* JBShapeLineLayer.m in Sources */,
 				A910F19C1DEA2F090033F1B5 /* Networking.swift in Sources */,
 			);

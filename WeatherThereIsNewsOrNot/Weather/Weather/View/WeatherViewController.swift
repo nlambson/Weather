@@ -10,19 +10,19 @@ import Foundation
 import UIKit
 
 
-class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLineChartViewDelegate, WeatherSnapshotDataSource {
+class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLineChartViewDelegate, WeatherDataSource {
     
     @IBOutlet weak var aView: UIView!
     let networkManager = NetworkingManager.sharedInstance
     var snapshots = [WeatherSnapshot]()
+    var futureSnapshots = [MinuteForecast]()
     let chartView = JBLineChartView.init()
-    let orderedColors: [UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.lightGray, UIColor.darkGray]
+    let orderedColors: [UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.purple, UIColor.darkGray]
     let orderedImageViews: [UIView] = [UIImageView(image:UIImage(named: "temperature")!),
                                        UIImageView(image:UIImage(named: "precipitation")!),
                                        UIImageView(image:UIImage(named: "humidity")!),
                                        UIImageView(image:UIImage(named: "windSpeed")!),
-                                       UIImageView(image:UIImage(named: "cloudCover")!),
-                                       UIView.init(frame: CGRect(x: 0, y: 0, width: 10, height: 10))]
+                                       UIImageView(image:UIImage(named: "cloudCover")!)]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,65 +152,35 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, dotViewAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIView! {
-        let circleView = orderedImageViews[orderedImageViews.count - 1]
+        //TODO if it is in the future do something to the circleView to be less prominent
         
         if (horizontalIndex > 0 && Int(horizontalIndex) < snapshots.count - 1) {
+            let circleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+            circleView.asCircle()
             circleView.alpha = 0.8
-            circleView.layer.cornerRadius = 50
             circleView.backgroundColor = orderedColors[Int(lineIndex)]
             return circleView
         }
         
-        switch(lineIndex) {
-        case 0:
-            return UIImageView(image:UIImage(named: "temperature")!)
-        case 1:
-            return UIImageView(image:UIImage(named: "precipitation")!)
-        case 2:
-            return UIImageView(image:UIImage(named: "humidity")!)
-        case 3:
-            return UIImageView(image:UIImage(named: "windSpeed")!)
-        case 4:
-            return UIImageView(image:UIImage(named: "cloudCover")!)
-        default:
-            break
-        }
-        
-        return circleView
+        return orderedImageViews[Int(lineIndex)]
     }
     
-//
-//    func lineChartView(_ lineChartView: JBLineChartView!, fillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-//        
-//    }
-//    
-//    func lineChartView(_ lineChartView: JBLineChartView!, gradientForLineAtLineIndex lineIndex: UInt) -> CAGradientLayer! {
-//        
-//    }
-//    
-////    func lineChartView(_ lineChartView: JBLineChartView!, showsDotsForLineAtLineIndex lineIndex: UInt) -> Bool {
-////        
-////    }
-//    
-//    func lineChartView(_ lineChartView: JBLineChartView!, verticalSelectionColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-//        
-//    }
-//    
-//    func lineChartView(_ lineChartView: JBLineChartView!, selectionColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-//        
-//    }
-//    
-//    func lineChartView(_ lineChartView: JBLineChartView!, selectionColorForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIColor! {
-//        
-//    }
-    
-    func lineChartView(_ lineChartView: JBLineChartView!, lineStyleForLineAtLineIndex lineIndex: UInt) -> JBLineChartViewLineStyle {
-        return JBLineChartViewLineStyle.dashed
+    func lineChartView(_ lineChartView: JBLineChartView!, verticalSelectionColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return orderedColors[Int(lineIndex)]
     }
-    
+
+    func lineChartView(_ lineChartView: JBLineChartView!, selectionColorForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIColor! {
+        return orderedColors[Int(lineIndex)]
+    }
 
     
-    //MARK: WeatherSnapshotDataSource
+    func lineChartView(_ lineChartView: JBLineChartView!, lineStyleForLineAtLineIndex lineIndex: UInt) -> JBLineChartViewLineStyle {
+        //TODO if it is in the future, make the line dashed
+        
+        return JBLineChartViewLineStyle.solid
+    }
+    
+    //MARK: WeatherDataSource
     func next(latest: WeatherSnapshot) {
         if(snapshots.last?.time != latest.time || snapshots.count == 0) {
             snapshots.append(latest)
@@ -222,4 +192,15 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         }
     }
     
+    func future(minutely: [MinuteForecast]) {
+        futureSnapshots = minutely
+        chartView.reloadData()
+    }
+}
+
+extension UIView{
+    func asCircle(){
+        self.layer.cornerRadius = self.frame.width / 2;
+        self.layer.masksToBounds = true
+    }
 }

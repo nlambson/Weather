@@ -19,7 +19,7 @@ class NetworkingManager {
         return instance
     }()
     
-    var weatherDelegate: WeatherSnapshotDataSource?
+    var weatherDelegate: WeatherDataSource?
     
     // Get nearby currentWeather with current forecasts of varying kinds
     //
@@ -46,10 +46,12 @@ class NetworkingManager {
             completionHandler: { response in
                 if let JSON = response.result.value {
                     do {
-                        let snapShot = try WeatherSnapshot(object: JSON as! MarshaledObject)
+                        let snapshot = try WeatherSnapshot(object: JSON as! MarshaledObject)
+                        let futureSnapshots: [MinuteForecast] = try (JSON as! MarshaledObject).value(for: "minutely.data")
                         
                         DispatchQueue.main.async {
-                            weatherDelegate.next(latest: snapShot)
+                            weatherDelegate.next(latest: snapshot)
+                            weatherDelegate.future(minutely: futureSnapshots)
                         }
                     }
                     catch _ {
