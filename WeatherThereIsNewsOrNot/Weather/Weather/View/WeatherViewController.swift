@@ -204,9 +204,14 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0]
         
+        let firstTime = networkManager.lat == 0 && networkManager.long == 0
+        
         networkManager.lat = CGFloat(userLocation.coordinate.latitude)
         networkManager.long = CGFloat(userLocation.coordinate.longitude)
-        networkManager.getCurrentWeather()
+        
+        if firstTime {
+            networkManager.getCurrentWeather()
+        }
         
         CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: {(placemarks, error) -> Void in
             if (error != nil) {
