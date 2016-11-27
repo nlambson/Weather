@@ -28,9 +28,8 @@ class NetworkingManager {
     func beginPollingCurrentWeather() {
         guard let _ = weatherDelegate else { return }
         
-        //The Dark Sky API has a 60 second resolution
         self.getCurrentWeather()
-        Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.getCurrentWeather), userInfo: nil, repeats: true);
+        Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.getCurrentWeather), userInfo: nil, repeats: true);
     }
     
     @objc func getCurrentWeather() {
