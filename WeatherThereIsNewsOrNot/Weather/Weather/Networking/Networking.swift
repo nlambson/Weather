@@ -8,16 +8,37 @@
 
 import Foundation
 import Marshal
-//https://api.darksky.net/forecast/97e181598dfdda956b83cf03bf82b1d2/37.8267,-122.4233
 
 import Foundation
 import Alamofire
 
-class Networking {
+class NetworkingManager {
+    //Not necessary since I only have one class but it just felt wrong to have a class like this that wasn't a singleton.
+    static let sharedInstance : NetworkingManager = {
+        let instance = NetworkingManager()
+        return instance
+    }()
     
-
-    // Get nearby events by a provided Zip Code
-    class func getCurrentWeather() {
+    var weatherDelegate: WeatherSnapshotDataSource?
+    
+    // Get nearby currentWeather with current forecasts of varying kinds
+    //
+    // Typically I would make these class functions but doing a Singleton pattern 
+    // with internal methods was easier since I'm using Timer and it was having issues
+    func beginPollingCurrentWeather() {
+        guard let _ = weatherDelegate else { return }
+        
+        //The Dark Sky API has a 60 second resolution
+        self.getCurrentWeather()
+        Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.getCurrentWeather), userInfo: nil, repeats: true);
+    }
+    
+    @objc func getCurrentWeather() {
+        guard let weatherDelegate = weatherDelegate else {
+            print("Quitting - no valid delegate was found for weather info")
+            return
+        }
+        
         let queue = DispatchQueue(label: "com.nlambson.weather-queue", qos: .utility, attributes: [.concurrent])
         
         Alamofire.request("https://api.darksky.net/forecast/97e181598dfdda956b83cf03bf82b1d2/37.8267,-122.4233").responseJSON(
@@ -27,15 +48,17 @@ class Networking {
                     do {
                         let snapShot = try WeatherSnapshot(object: JSON as! MarshaledObject)
                         
-                        print("snapShot: \(snapShot)")
+                        DispatchQueue.main.async {
+                            weatherDelegate.next(latest: snapShot)
+                        }
                     }
                     catch _ {
                         print("failed hard")
                     }
                 }
                 
-
-            }
+                
+        }
         )
     }
 }

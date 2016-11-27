@@ -8,9 +8,6 @@
          location = "group:Carthage/Checkouts/Marshal/Marshal.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Carthage/Checkouts/Mantle/Mantle.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:Carthage/Checkouts/AlamoFire/Alamofire.xcodeproj">
       </FileRef>
    </Group>

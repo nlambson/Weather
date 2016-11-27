@@ -9,6 +9,10 @@
 import Foundation
 import Marshal
 
+protocol WeatherSnapshotDataSource {
+    func next(latest: WeatherSnapshot)
+}
+
 struct WeatherSnapshot: Unmarshaling {
     var timezone: String
     var offset: Int
@@ -18,6 +22,8 @@ struct WeatherSnapshot: Unmarshaling {
     var precipProbability: Int
     var temperature: Float
     var humidity: Float
+    var windSpeed: Float
+    var cloudCover: Float
     
     init(object: MarshaledObject) throws {
         timezone = try object.value(for: "timezone")
@@ -25,8 +31,11 @@ struct WeatherSnapshot: Unmarshaling {
         
         time = try object.value(for: "currently.time")
         summary = try object.value(for: "currently.summary")
+        
         precipProbability = try object.value(for: "currently.precipProbability")
         temperature = try object.value(for: "currently.temperature")
         humidity = try object.value(for: "currently.humidity")
+        windSpeed = try object.value(for: "currently.windSpeed")
+        cloudCover = try object.value(for: "currently.cloudCover")
     }
 }
