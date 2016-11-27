@@ -8,7 +8,6 @@
 
 import Foundation
 import Marshal
-
 import Foundation
 import Alamofire
 
@@ -20,7 +19,8 @@ class NetworkingManager {
     }()
     
     var weatherDelegate: WeatherDataSource?
-    
+    var lat: CGFloat = 0.0
+    var long: CGFloat = 0.0
     // Get nearby currentWeather with current forecasts of varying kinds
     //
     // Typically I would make these class functions but doing a Singleton pattern 
@@ -39,9 +39,13 @@ class NetworkingManager {
             return
         }
         
+        if (lat == 0 && long == 0) {
+            return
+        }
+        
         let queue = DispatchQueue(label: "com.nlambson.weather-queue", qos: .utility, attributes: [.concurrent])
         
-        Alamofire.request("https://api.darksky.net/forecast/97e181598dfdda956b83cf03bf82b1d2/37.8267,-122.4233").responseJSON(
+        Alamofire.request("https://api.darksky.net/forecast/97e181598dfdda956b83cf03bf82b1d2/\(lat),\(long)").responseJSON(
             queue: queue,
             completionHandler: { response in
                 if let JSON = response.result.value {

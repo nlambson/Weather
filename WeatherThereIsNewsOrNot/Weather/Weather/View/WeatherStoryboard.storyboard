@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Weather View Controller-->
+        <!--Weather-->
         <scene sceneID="951-nT-Tx4">
             <objects>
                 <viewController id="CKT-Kh-2OQ" customClass="WeatherViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jJC-BO-DqO"/>
+                    <navigationItem key="navigationItem" title="Weather" id="jJC-BO-DqO"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aq5-c6-Bht" userLabel="First Responder" sceneMemberID="firstResponder"/>

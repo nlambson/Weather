@@ -8,14 +8,15 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
-
-class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLineChartViewDelegate, WeatherDataSource {
+class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLineChartViewDelegate, WeatherDataSource, CLLocationManagerDelegate {
     
     @IBOutlet weak var aView: UIView!
     let networkManager = NetworkingManager.sharedInstance
     var snapshots = [WeatherSnapshot]()
     var futureSnapshots = [MinuteForecast]()
+    var locationManager: CLLocationManager!
     let chartView = JBLineChartView.init()
     let orderedColors: [UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.purple, UIColor.darkGray]
     let orderedImageViews: [UIView] = [UIImageView(image:UIImage(named: "temperature")!),
@@ -26,6 +27,12 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
         chartView.dataSource = self
         chartView.delegate = self
         chartView.showsLineSelection = true
@@ -195,6 +202,28 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     func future(minutely: [MinuteForecast]) {
         futureSnapshots = minutely
         chartView.reloadData()
+    }
+    
+    //MARK: LocationManagerDelegate
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0]
+        
+        networkManager.lat = CGFloat(userLocation.coordinate.latitude)
+        networkManager.long = CGFloat(userLocation.coordinate.longitude)
+        networkManager.getCurrentWeather()
+        
+        CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: {(placemarks, error) -> Void in
+            if (error != nil) {
+                print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
+                return
+            }
+            
+            if let pm = placemarks?[0] {
+                self.title = "\(pm.locality!), \(pm.administrativeArea!)"
+            } else {
+                print("Problem with the data received from geocoder")
+            }
+        })
     }
 }
 
