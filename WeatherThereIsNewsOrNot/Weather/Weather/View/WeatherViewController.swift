@@ -16,7 +16,14 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     let networkManager = NetworkingManager.sharedInstance
     var snapshots = [WeatherSnapshot]()
     let chartView = JBLineChartView.init()
-    
+    let orderedColors: [UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.lightGray, UIColor.darkGray]
+    let orderedImageViews: [UIView] = [UIImageView(image:UIImage(named: "temperature")!),
+                                       UIImageView(image:UIImage(named: "precipitation")!),
+                                       UIImageView(image:UIImage(named: "humidity")!),
+                                       UIImageView(image:UIImage(named: "windSpeed")!),
+                                       UIImageView(image:UIImage(named: "cloudCover")!),
+                                       UIView.init(frame: CGRect(x: 0, y: 0, width: 10, height: 10))]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         chartView.dataSource = self
@@ -40,7 +47,7 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         view.layer.insertSublayer(gradientLayer, at: 0)
         
         let buffer: CGFloat = 20.0
-        let chartHeight = (view.frame.height / 3) - buffer * 2
+        let chartHeight = (view.frame.height / 2) - buffer * 2
         let y = view.frame.height - chartHeight - buffer * 2
         chartView.frame = CGRect(x: buffer, y: y, width: view.frame.width - buffer * 2, height: chartHeight)
         view.bringSubview(toFront: chartView)
@@ -121,17 +128,13 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         print("hide the things")
     }
     
-    
-    func lineChartView(_ lineChartView: JBLineChartView!, showsDotsForLineAtLineIndex lineIndex: UInt) -> Bool {
-        return true
-    }
 
     func lineChartView(_ lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
         return true
     }
 
     func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
-        return CGFloat(8.0)
+        return CGFloat(4.0)
     }
     
     
@@ -141,45 +144,39 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     // 3: wind speed
     // 4: cloud cover
     func lineChartView(_ lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return orderedColors[Int(lineIndex)].withAlphaComponent(0.7)
+    }
+    
+    func lineChartView(_ lineChartView: JBLineChartView!, showsDotsForLineAtLineIndex lineIndex: UInt) -> Bool {
+        return true
+    }
+    
+    func lineChartView(_ lineChartView: JBLineChartView!, dotViewAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIView! {
+        let circleView = orderedImageViews[orderedImageViews.count - 1]
+        
+        if (horizontalIndex > 0 && Int(horizontalIndex) < snapshots.count - 1) {
+            circleView.alpha = 0.8
+            circleView.layer.cornerRadius = 50
+            circleView.backgroundColor = orderedColors[Int(lineIndex)]
+            return circleView
+        }
+        
         switch(lineIndex) {
         case 0:
-            return UIColor.red.withAlphaComponent(0.7)
+            return UIImageView(image:UIImage(named: "temperature")!)
         case 1:
-            return UIColor.blue.withAlphaComponent(0.7)
+            return UIImageView(image:UIImage(named: "precipitation")!)
         case 2:
-            return UIColor.green.withAlphaComponent(0.7)
+            return UIImageView(image:UIImage(named: "humidity")!)
         case 3:
-            return UIColor.lightGray.withAlphaComponent(0.7)
+            return UIImageView(image:UIImage(named: "windSpeed")!)
         case 4:
-            return UIColor.darkGray.withAlphaComponent(0.7)
+            return UIImageView(image:UIImage(named: "cloudCover")!)
         default:
             break
         }
         
-        return UIColor.brown.withAlphaComponent(0.7)
-    }
-    
-    func lineChartView(_ lineChartView: JBLineChartView!, colorForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIColor! {
-        switch(lineIndex) {
-        case 0:
-            return UIColor.red
-        case 1:
-            return UIColor.blue
-        case 2:
-            return UIColor.green
-        case 3:
-            return UIColor.lightGray
-        case 4:
-            return UIColor.darkGray
-        default:
-            break
-        }
-        
-        return UIColor.brown
-    }
-    
-    func lineChartView(_ lineChartView: JBLineChartView!, dotRadiusForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
-        return CGFloat(5.0)
+        return circleView
     }
     
 //
