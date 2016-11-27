@@ -10,8 +10,7 @@ import Foundation
 import Marshal
 
 protocol WeatherDataSource {
-    func next(latest: WeatherSnapshot)
-    func future(minutely: [MinuteForecast])
+    func next(current: WeatherSnapshot, minutely: [MinuteForecast])
 }
 
 struct WeatherSnapshot: Unmarshaling {

@@ -188,9 +188,10 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     }
     
     //MARK: WeatherDataSource
-    func next(latest: WeatherSnapshot) {
-        if(snapshots.last?.time != latest.time || snapshots.count == 0) {
-            snapshots.append(latest)
+    func next(current: WeatherSnapshot, minutely: [MinuteForecast]) {
+        if(snapshots.last?.time != current.time || snapshots.count == 0) {
+            snapshots.append(current)
+            futureSnapshots = minutely
             chartView.reloadData()
             print(snapshots)
             print("=================================================")
@@ -198,12 +199,7 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
             print("================Already Exists===================")
         }
     }
-    
-    func future(minutely: [MinuteForecast]) {
-        futureSnapshots = minutely
-        chartView.reloadData()
-    }
-    
+   
     //MARK: LocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0]

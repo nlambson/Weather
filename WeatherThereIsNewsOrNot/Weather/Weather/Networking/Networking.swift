@@ -54,8 +54,7 @@ class NetworkingManager {
                         let futureSnapshots: [MinuteForecast] = try (JSON as! MarshaledObject).value(for: "minutely.data")
                         
                         DispatchQueue.main.async {
-                            weatherDelegate.next(latest: snapshot)
-                            weatherDelegate.future(minutely: futureSnapshots)
+                            weatherDelegate.next(current: snapshot, minutely: futureSnapshots)
                         }
                     }
                     catch _ {
