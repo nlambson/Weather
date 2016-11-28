@@ -59,7 +59,7 @@ class NetworkingManager {
                             }
                             
                             if let pm = placemarks?[0] {
-                                return snapshot.locationText = "\(pm.locality!), \(pm.administrativeArea!)"
+                                snapshot.locationText = "\(pm.locality!), \(pm.administrativeArea!)"
                             } else {
                                 print("Problem with the data received from geocoder")
                             }

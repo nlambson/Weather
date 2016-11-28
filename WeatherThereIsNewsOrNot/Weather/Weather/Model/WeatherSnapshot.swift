@@ -13,7 +13,7 @@ protocol WeatherDataSource {
     func next(current: WeatherSnapshot, minutely: [MinuteForecast])
 }
 
-struct WeatherSnapshot: Unmarshaling {
+class WeatherSnapshot: Unmarshaling {
     var timezone: String
     var offset: Int
     var locationText: String?
@@ -28,7 +28,7 @@ struct WeatherSnapshot: Unmarshaling {
     var windSpeed: Float
     var cloudCover: Float
     
-    init(object: MarshaledObject) throws {
+    required init(object: MarshaledObject) throws {
         timezone = try object.value(for: "timezone")
         offset = try object.value(for: "offset")
         latitude = try object.value(for: "latitude")
