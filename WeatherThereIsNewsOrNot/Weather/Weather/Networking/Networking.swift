@@ -12,7 +12,7 @@ import Foundation
 import Alamofire
 
 class NetworkingManager {
-    //Not necessary since I only have one class but it just felt wrong to have a class like this that wasn't a singleton.
+    //Probably overkill since I only have one class depending on this but it just felt wrong to have a class like this that wasn't a singleton.
     static let sharedInstance : NetworkingManager = {
         let instance = NetworkingManager()
         return instance

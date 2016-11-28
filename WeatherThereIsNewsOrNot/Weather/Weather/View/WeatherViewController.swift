@@ -190,9 +190,7 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     func didDeselectLine(in lineChartView: JBLineChartView!) {
         updateView(for: snapshots[snapshots.count - 1])
     }
-    
-
-    func lineChartView(_ lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
+        func lineChartView(_ lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
         return true
     }
 
@@ -209,8 +207,7 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, dotViewAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIView! {
-        //TODO consider adding future predictions, make a visible change showing it is different and less prominent
-        
+
         if (horizontalIndex > 0 && Int(horizontalIndex) < snapshots.count - 1) {
             let circleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
             circleView.asCircle()
