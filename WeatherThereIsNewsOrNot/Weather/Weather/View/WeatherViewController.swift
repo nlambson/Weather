@@ -12,23 +12,23 @@ import CoreLocation
 
 class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLineChartViewDelegate, WeatherDataSource, CLLocationManagerDelegate {
     
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var dateLabel: SpringLabel!
+    @IBOutlet weak var timeLabel: SpringLabel!
     
-    @IBOutlet weak var temperatureImageView: UIImageView!
-    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var temperatureImageView: SpringImageView!
+    @IBOutlet weak var temperatureLabel: SpringLabel!
     
-    @IBOutlet weak var precipitationImageView: UIImageView!
-    @IBOutlet weak var precipitationLabel: UILabel!
+    @IBOutlet weak var precipitationImageView: SpringImageView!
+    @IBOutlet weak var precipitationLabel: SpringLabel!
     
-    @IBOutlet weak var humidityImageView: UIImageView!
-    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var humidityImageView: SpringImageView!
+    @IBOutlet weak var humidityLabel: SpringLabel!
     
-    @IBOutlet weak var windSpeedImageView: UIImageView!
-    @IBOutlet weak var windSpeedLabel: UILabel!
+    @IBOutlet weak var windSpeedImageView: SpringImageView!
+    @IBOutlet weak var windSpeedLabel: SpringLabel!
     
-    @IBOutlet weak var cloudCoverImageView: UIImageView!
-    @IBOutlet weak var cloudCoverLabel: UILabel!
+    @IBOutlet weak var cloudCoverImageView: SpringImageView!
+    @IBOutlet weak var cloudCoverLabel: SpringLabel!
     
     let networkManager = NetworkingManager.sharedInstance
     var snapshots = [WeatherSnapshot]()
@@ -148,8 +148,42 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         return 0
     }
     
+    //MARK: JBLineChartViewDelegate
+    // horizontal index 0: Temperature
+    // 1: Chance of Precipitation
+    // 2: humidity
+    // 3: wind speed
+    // 4: cloud cover
     func lineChartView(_ lineChartView: JBLineChartView!, didSelectLineAt lineIndex: UInt, horizontalIndex: UInt) {
         updateView(for: snapshots[Int(horizontalIndex)])
+    }
+    
+    func lineChartView(_ lineChartView: JBLineChartView!, selectionColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        var correspondingView: SpringImageView = SpringImageView()
+        
+        switch(lineIndex) {
+        case 0:
+            correspondingView = self.temperatureImageView
+        case 1:
+            correspondingView = self.precipitationImageView
+        case 2:
+            correspondingView = self.humidityImageView
+        case 3:
+            correspondingView = self.windSpeedImageView
+        case 4:
+            correspondingView = self.cloudCoverImageView
+        default:
+            break
+        }
+        
+        correspondingView.stopAnimating()
+        correspondingView.animation = "pop"
+        correspondingView.curve = "spring"
+        correspondingView.damping = 0.3
+        correspondingView.duration = 1.5
+        correspondingView.animate()
+        
+        return orderedColors[Int(lineIndex)]
     }
     
     func didDeselectLine(in lineChartView: JBLineChartView!) {
@@ -209,7 +243,6 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
             snapshots.append(current)
             futureSnapshots = minutely
             chartView.reloadData()
-
             updateView(for: current)
         } else {
             print("================Weather Snapshot Already Exists===================")

@@ -43,7 +43,6 @@ class NetworkingManager {
         }
         
         let queue = DispatchQueue(label: "com.nlambson.weather-queue", qos: .utility, attributes: [.concurrent])
-        
         Alamofire.request("https://api.darksky.net/forecast/97e181598dfdda956b83cf03bf82b1d2/\(lat),\(long)").responseJSON(
             queue: queue,
             completionHandler: { response in
@@ -62,7 +61,7 @@ class NetworkingManager {
                 }
                 
                 
-        }
+            }
         )
     }
 }
