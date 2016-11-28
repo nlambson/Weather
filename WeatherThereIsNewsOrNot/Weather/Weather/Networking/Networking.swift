@@ -49,7 +49,7 @@ class NetworkingManager {
             completionHandler: { response in
                 if let JSON = response.result.value {
                     do {
-                        var snapshot = try WeatherSnapshot(object: JSON as! MarshaledObject)
+                        let snapshot = try WeatherSnapshot(object: JSON as! MarshaledObject)
                         let locationForSnapshot = CLLocation(latitude: CLLocationDegrees(snapshot.latitude), longitude: CLLocationDegrees(snapshot.longitude))
                         
                         CLGeocoder().reverseGeocodeLocation(locationForSnapshot, completionHandler: {(placemarks, error) -> Void in

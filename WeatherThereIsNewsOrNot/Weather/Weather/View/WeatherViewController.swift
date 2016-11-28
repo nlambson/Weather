@@ -31,6 +31,7 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     @IBOutlet weak var cloudCoverLabel: SpringLabel!
     
     let networkManager = NetworkingManager.sharedInstance
+    var isLookingUp: Bool = false
     var snapshots = [WeatherSnapshot]()
     var futureSnapshots = [MinuteForecast]()
     var locationManager: CLLocationManager!
