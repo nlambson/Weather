@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9xb-eE-ops">
-                                <rect key="frame" x="10" y="10" width="300" height="200"/>
+                                <rect key="frame" x="10" y="10" width="300" height="195"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nov 27, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpw-0m-Fsz">
                                         <rect key="frame" x="80" y="0.0" width="140.5" height="29"/>
@@ -31,13 +31,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:08 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4D-Ci-h0Y">
-                                        <rect key="frame" x="76.5" y="38" width="147" height="45.5"/>
+                                        <rect key="frame" x="76.5" y="37" width="147" height="45.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="38"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="kTT-Rw-1rr">
-                                        <rect key="frame" x="0.0" y="91" width="300" height="32"/>
+                                        <rect key="frame" x="0.0" y="88.5" width="300" height="32"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temperature_large" translatesAutoresizingMaskIntoConstraints="NO" id="Uih-oX-2uK">
                                                 <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
@@ -61,7 +61,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vtn-gI-mb1">
-                                        <rect key="frame" x="0.0" y="141.5" width="300" height="24"/>
+                                        <rect key="frame" x="0.0" y="137.5" width="300" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="35.4°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vg-mM-CGj">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="24"/>
@@ -96,8 +96,8 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A2s-6I-QI7" userLabel="Line">
-                                        <rect key="frame" x="5" y="199" width="290" height="1"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="5" y="194" width="290" height="1"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="9k7-ng-R4M"/>
                                             <constraint firstAttribute="height" constant="1" id="UEL-Qh-TjT"/>
@@ -109,7 +109,7 @@
                                     <constraint firstItem="A2s-6I-QI7" firstAttribute="leading" secondItem="9xb-eE-ops" secondAttribute="leading" constant="5" id="8PN-WD-Fw1"/>
                                     <constraint firstAttribute="trailing" secondItem="A2s-6I-QI7" secondAttribute="trailing" constant="5" id="9Ew-Vr-Z8s"/>
                                     <constraint firstItem="kTT-Rw-1rr" firstAttribute="leading" secondItem="9xb-eE-ops" secondAttribute="leading" id="T8K-io-iiY"/>
-                                    <constraint firstAttribute="height" constant="200" id="TjV-km-fVk"/>
+                                    <constraint firstAttribute="height" constant="195" id="TjV-km-fVk"/>
                                     <constraint firstAttribute="trailing" secondItem="kTT-Rw-1rr" secondAttribute="trailing" id="lXL-8L-JNR"/>
                                     <constraint firstItem="vtn-gI-mb1" firstAttribute="leading" secondItem="9xb-eE-ops" secondAttribute="leading" id="mbq-gG-Yzy"/>
                                     <constraint firstAttribute="trailing" secondItem="vtn-gI-mb1" secondAttribute="trailing" id="ueU-uw-R9Y"/>
@@ -125,6 +125,20 @@
                     </view>
                     <navigationItem key="navigationItem" title="Weather" id="jJC-BO-DqO"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="cloudCoverImageView" destination="Kfr-8h-U7z" id="XHd-9a-fDX"/>
+                        <outlet property="cloudCoverLabel" destination="mZ3-n0-5AC" id="IeI-cQ-dJ1"/>
+                        <outlet property="dateLabel" destination="hpw-0m-Fsz" id="lV4-tT-rs1"/>
+                        <outlet property="humidityImageView" destination="GVQ-S5-75c" id="bQd-N4-YCi"/>
+                        <outlet property="humidityLabel" destination="22E-yk-3TI" id="QFb-yR-EUJ"/>
+                        <outlet property="precipitationImageView" destination="wBo-Bg-fzX" id="ndq-Nq-QMl"/>
+                        <outlet property="precipitationLabel" destination="Smo-Gc-wdY" id="4BW-BA-guh"/>
+                        <outlet property="temperatureImageView" destination="Uih-oX-2uK" id="l4V-Pu-wKV"/>
+                        <outlet property="temperatureLabel" destination="0vg-mM-CGj" id="157-AI-dRr"/>
+                        <outlet property="timeLabel" destination="r4D-Ci-h0Y" id="YHy-Sp-cbc"/>
+                        <outlet property="windSpeedImageView" destination="qfy-gK-0dW" id="q8u-Q3-nUK"/>
+                        <outlet property="windSpeedLabel" destination="X6N-pZ-IKp" id="4Kb-5b-CRh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aq5-c6-Bht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

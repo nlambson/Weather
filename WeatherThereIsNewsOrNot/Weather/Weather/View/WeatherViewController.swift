@@ -12,19 +12,43 @@ import CoreLocation
 
 class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLineChartViewDelegate, WeatherDataSource, CLLocationManagerDelegate {
     
-    @IBOutlet weak var aView: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var temperatureImageView: UIImageView!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    
+    @IBOutlet weak var precipitationImageView: UIImageView!
+    @IBOutlet weak var precipitationLabel: UILabel!
+    
+    @IBOutlet weak var humidityImageView: UIImageView!
+    @IBOutlet weak var humidityLabel: UILabel!
+    
+    @IBOutlet weak var windSpeedImageView: UIImageView!
+    @IBOutlet weak var windSpeedLabel: UILabel!
+    
+    @IBOutlet weak var cloudCoverImageView: UIImageView!
+    @IBOutlet weak var cloudCoverLabel: UILabel!
+    
     let networkManager = NetworkingManager.sharedInstance
     var snapshots = [WeatherSnapshot]()
     var futureSnapshots = [MinuteForecast]()
     var locationManager: CLLocationManager!
     let chartView = JBLineChartView.init()
-    let orderedColors: [UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.purple, UIColor.darkGray]
-    let orderedImageViews: [UIView] = [UIImageView(image:UIImage(named: "temperature")!),
-                                       UIImageView(image:UIImage(named: "precipitation")!),
-                                       UIImageView(image:UIImage(named: "humidity")!),
-                                       UIImageView(image:UIImage(named: "windSpeed")!),
-                                       UIImageView(image:UIImage(named: "cloudCover")!)]
+    
+    let orderedColors: [UIColor] = [UIColor(red:0.79, green:0.11, blue:0.09, alpha:1.00),
+                                    UIColor(red:0.12, green:0.61, blue:0.97, alpha:1.00),
+                                    UIColor(red:0.26, green:0.35, blue:0.76, alpha:1.00),
+                                    UIColor(red:0.56, green:0.58, blue:0.91, alpha:1.00),
+                                    UIColor(red:0.20, green:0.31, blue:0.33, alpha:1.00)]
+    let orderedImageViews: [UIView] = [UIImageView(image:UIImage(named: "temperature")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)),
+                                       UIImageView(image:UIImage(named: "precipitation")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)),
+                                       UIImageView(image:UIImage(named: "humidity")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)),
+                                       UIImageView(image:UIImage(named: "windSpeed")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)),
+                                       UIImageView(image:UIImage(named: "cloudCover")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate))]
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager = CLLocationManager()
@@ -41,6 +65,17 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         view.addSubview(chartView)
         view.backgroundColor = UIColor(patternImage: UIImage(named: "cloudPattern")!)
         
+        temperatureImageView.image = temperatureImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        temperatureImageView.tintColor = orderedColors[0]
+        precipitationImageView.image = precipitationImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        precipitationImageView.tintColor = orderedColors[1]
+        humidityImageView.image = humidityImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        humidityImageView.tintColor = orderedColors[2]
+        windSpeedImageView.image = windSpeedImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        windSpeedImageView.tintColor = orderedColors[3]
+        cloudCoverImageView.image = cloudCoverImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        cloudCoverImageView.tintColor = orderedColors[4]
+        
         networkManager.weatherDelegate = self
         networkManager.beginPollingCurrentWeather()
     }
@@ -48,10 +83,10 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let gradientLayer = CAGradientLayer.init()
-        gradientLayer.frame = view.bounds
-        gradientLayer.backgroundColor = UIColor(red:0.49, green:0.68, blue:0.71, alpha:0.5).cgColor
-        view.layer.insertSublayer(gradientLayer, at: 0)
+        let bleachLayer = CAGradientLayer.init()
+        bleachLayer.frame = view.bounds
+        bleachLayer.backgroundColor = UIColor.white.withAlphaComponent(0.7).cgColor
+        view.layer.insertSublayer(bleachLayer, at: 0)
         
         let buffer: CGFloat = 20.0
         let chartHeight = (view.frame.height / 2) - buffer * 2
@@ -61,6 +96,20 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         chartView.reloadData()
     }
     
+    func updateView(for current: WeatherSnapshot) {
+        let date = Date(timeIntervalSince1970: TimeInterval(current.time))
+        let dayPeriodFormatter = DateFormatter()
+        let timePeriodFormatter = DateFormatter()
+        dayPeriodFormatter.dateFormat = "MMM dd YYYY"
+        timePeriodFormatter.dateFormat = "hh:mm a"
+        dateLabel.text = dayPeriodFormatter.string(from: date)
+        timeLabel.text = timePeriodFormatter.string(from: date)
+        temperatureLabel.text = String(format: "%.0f°F", current.temperature)
+        precipitationLabel.text = String(format: "%.0f%%", current.precipProbability * 100)
+        humidityLabel.text = String(format: "%.0f%%", current.humidity * 100)
+        windSpeedLabel.text = String(format: "%.0fmph", current.windSpeed)
+        cloudCoverLabel.text = String(format: "%.0f%%", current.cloudCover * 100)
+    }
     
     //MARK: JBLineChartViewDataSource
     func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
@@ -100,39 +149,11 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, didSelectLineAt lineIndex: UInt, horizontalIndex: UInt) {
-        
-        switch(lineIndex) {
-            case 0:
-                let value = snapshots[Int(horizontalIndex)].temperature
-                print("Temperature: \(value)")
-                break
-            case 1:
-                let value = snapshots[Int(horizontalIndex)].precipProbability * 100
-                print("Chance of Precipitation: \(value)")
-                break
-            case 2:
-                let value = snapshots[Int(horizontalIndex)].humidity * 100
-                print("Humidity: \(value)")
-            case 3:
-                let value = snapshots[Int(horizontalIndex)].windSpeed
-                print("Wind speed: \(value)")
-            case 4:
-                let value = snapshots[Int(horizontalIndex)].cloudCover * 100
-                print("Cloud Cover: \(value)")
-            default:
-                break
-        }
-        
-//        [self.informationView setValueText:[NSString stringWithFormat:@"%.2f", [valueNumber floatValue]] unitText:kJBStringLabelMm];
-//        [self.informationView setTitleText:lineIndex == JBLineChartLineSolid ? kJBStringLabelMetropolitanAverage : kJBStringLabelNationalAverage];
-//        [self.informationView setHidden:NO animated:YES];
-//        [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
-//        [self.tooltipView setText:[[self.daysOfWeek objectAtIndex:horizontalIndex] uppercaseString]];
-
+        updateView(for: snapshots[Int(horizontalIndex)])
     }
     
     func didDeselectLine(in lineChartView: JBLineChartView!) {
-        print("hide the things")
+        updateView(for: snapshots[snapshots.count - 1])
     }
     
 
@@ -159,7 +180,7 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, dotViewAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIView! {
-        //TODO if it is in the future do something to the circleView to be less prominent
+        //TODO consider adding future predictions, make a visible change showing it is different and less prominent
         
         if (horizontalIndex > 0 && Int(horizontalIndex) < snapshots.count - 1) {
             let circleView = UIView.init(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
@@ -169,7 +190,9 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
             return circleView
         }
         
-        return orderedImageViews[Int(lineIndex)]
+        let image = orderedImageViews[Int(lineIndex)]
+        image.tintColor = orderedColors[Int(lineIndex)]
+        return image
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, verticalSelectionColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
@@ -182,7 +205,7 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
 
     
     func lineChartView(_ lineChartView: JBLineChartView!, lineStyleForLineAtLineIndex lineIndex: UInt) -> JBLineChartViewLineStyle {
-        //TODO if it is in the future, make the line dashed
+        //TODO If you implement future predicitions, make the future line dashed. Unfortunately only precip chance is available from minutely forecast
         
         return JBLineChartViewLineStyle.solid
     }
@@ -197,15 +220,8 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
             snapshots.append(current)
             futureSnapshots = minutely
             chartView.reloadData()
-            
-            let date = Date(timeIntervalSince1970: TimeInterval(current.time))
-            
-            let dayTimePeriodFormatter = DateFormatter()
-            dayTimePeriodFormatter.dateFormat = "MMM dd YYYY hh:mm a"
-             let dateString = dayTimePeriodFormatter.string(from: date)
-            
-            print(dateString)
-            print("=================================================")
+
+            updateView(for: current)
         } else {
             print("================Already Exists===================")
         }

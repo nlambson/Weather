@@ -19,7 +19,7 @@ struct WeatherSnapshot: Unmarshaling {
     
     var time: Int
     var summary: String
-    var precipProbability: Int
+    var precipProbability: Float
     var temperature: Float
     var humidity: Float
     var windSpeed: Float
