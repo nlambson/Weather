@@ -47,8 +47,6 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
                                        UIImageView(image:UIImage(named: "windSpeed")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)),
                                        UIImageView(image:UIImage(named: "cloudCover")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate))]
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager = CLLocationManager()
@@ -67,12 +65,16 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         
         temperatureImageView.image = temperatureImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         temperatureImageView.tintColor = orderedColors[0]
+        
         precipitationImageView.image = precipitationImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         precipitationImageView.tintColor = orderedColors[1]
+        
         humidityImageView.image = humidityImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         humidityImageView.tintColor = orderedColors[2]
+        
         windSpeedImageView.image = windSpeedImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         windSpeedImageView.tintColor = orderedColors[3]
+        
         cloudCoverImageView.image = cloudCoverImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         cloudCoverImageView.tintColor = orderedColors[4]
         
@@ -116,7 +118,6 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         return 5
     }
     
-    
     func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
         return UInt(snapshots.count)
     }
@@ -127,7 +128,6 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     // 2: humidity
     // 3: wind speed
     // 4: cloud cover
-    
     func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         
         switch(lineIndex) {
@@ -165,12 +165,6 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         return CGFloat(4.0)
     }
     
-    
-    // horizontal index 0: Temperature
-    // 1: Chance of Precipitation
-    // 2: humidity
-    // 3: wind speed
-    // 4: cloud cover
     func lineChartView(_ lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
         return orderedColors[Int(lineIndex)].withAlphaComponent(0.7)
     }
@@ -192,6 +186,8 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         
         let image = orderedImageViews[Int(lineIndex)]
         image.tintColor = orderedColors[Int(lineIndex)]
+        image.asCircle()
+        image.backgroundColor = UIColor.white
         return image
     }
     
@@ -201,13 +197,6 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
 
     func lineChartView(_ lineChartView: JBLineChartView!, selectionColorForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIColor! {
         return orderedColors[Int(lineIndex)]
-    }
-
-    
-    func lineChartView(_ lineChartView: JBLineChartView!, lineStyleForLineAtLineIndex lineIndex: UInt) -> JBLineChartViewLineStyle {
-        //TODO If you implement future predicitions, make the future line dashed. Unfortunately only precip chance is available from minutely forecast
-        
-        return JBLineChartViewLineStyle.solid
     }
     
     //MARK: WeatherDataSource
@@ -223,7 +212,7 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
 
             updateView(for: current)
         } else {
-            print("================Already Exists===================")
+            print("================Weather Snapshot Already Exists===================")
         }
     }
    
