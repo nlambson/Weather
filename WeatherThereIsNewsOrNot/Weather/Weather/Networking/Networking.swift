@@ -10,6 +10,7 @@ import Foundation
 import Marshal
 import Foundation
 import Alamofire
+import CoreLocation
 
 class NetworkingManager {
     //Probably overkill since I only have one class depending on this but it just felt wrong to have a class like this that wasn't a singleton.
@@ -48,7 +49,22 @@ class NetworkingManager {
             completionHandler: { response in
                 if let JSON = response.result.value {
                     do {
-                        let snapshot = try WeatherSnapshot(object: JSON as! MarshaledObject)
+                        var snapshot = try WeatherSnapshot(object: JSON as! MarshaledObject)
+                        let locationForSnapshot = CLLocation(latitude: CLLocationDegrees(snapshot.latitude), longitude: CLLocationDegrees(snapshot.longitude))
+                        
+                        CLGeocoder().reverseGeocodeLocation(locationForSnapshot, completionHandler: {(placemarks, error) -> Void in
+                            if (error != nil) {
+                                print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
+                                return
+                            }
+                            
+                            if let pm = placemarks?[0] {
+                                return snapshot.locationText = "\(pm.locality!), \(pm.administrativeArea!)"
+                            } else {
+                                print("Problem with the data received from geocoder")
+                            }
+                        })
+                        
                         let futureSnapshots: [MinuteForecast] = try (JSON as! MarshaledObject).value(for: "minutely.data")
                         
                         DispatchQueue.main.async {

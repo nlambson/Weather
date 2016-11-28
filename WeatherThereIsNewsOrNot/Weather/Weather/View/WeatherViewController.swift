@@ -111,6 +111,11 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         humidityLabel.text = String(format: "%.0f%%", current.humidity * 100)
         windSpeedLabel.text = String(format: "%.0fmph", current.windSpeed)
         cloudCoverLabel.text = String(format: "%.0f%%", current.cloudCover * 100)
+        if let locationText = current.locationText {
+            self.title = locationText
+        } else {
+            reverseLookupLocation(for: current)
+        }
     }
     
     //MARK: JBLineChartViewDataSource
@@ -235,7 +240,7 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     func next(current: WeatherSnapshot, minutely: [MinuteForecast]) {
         if(snapshots.last?.time != current.time || snapshots.count == 0) {
             if snapshots.count > 15 {
-                snapshots.remove(at: snapshots.count - 1)
+                snapshots.remove(at: 0)
             }
             
             snapshots.append(current)
@@ -259,8 +264,12 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         if firstTime {
             networkManager.getCurrentWeather()
         }
+    }
+    
+    func reverseLookupLocation(for snapshot: WeatherSnapshot) {
+        let locationForSnapshot = CLLocation(latitude: CLLocationDegrees(snapshot.latitude), longitude: CLLocationDegrees(snapshot.longitude))
         
-        CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: {(placemarks, error) -> Void in
+        CLGeocoder().reverseGeocodeLocation(locationForSnapshot, completionHandler: {(placemarks, error) -> Void in
             if (error != nil) {
                 print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
                 return
@@ -273,6 +282,7 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
             }
         })
     }
+    
 }
 
 extension UIView{

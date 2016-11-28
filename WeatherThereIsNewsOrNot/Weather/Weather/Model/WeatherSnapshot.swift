@@ -16,7 +16,10 @@ protocol WeatherDataSource {
 struct WeatherSnapshot: Unmarshaling {
     var timezone: String
     var offset: Int
+    var locationText: String?
     
+    var latitude: Float
+    var longitude: Float
     var time: Int
     var summary: String
     var precipProbability: Float
@@ -28,6 +31,8 @@ struct WeatherSnapshot: Unmarshaling {
     init(object: MarshaledObject) throws {
         timezone = try object.value(for: "timezone")
         offset = try object.value(for: "offset")
+        latitude = try object.value(for: "latitude")
+        longitude = try object.value(for: "longitude")
         
         time = try object.value(for: "currently.time")
         summary = try object.value(for: "currently.summary")
