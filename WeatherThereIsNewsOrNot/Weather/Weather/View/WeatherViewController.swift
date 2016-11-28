@@ -190,10 +190,21 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
     //MARK: WeatherDataSource
     func next(current: WeatherSnapshot, minutely: [MinuteForecast]) {
         if(snapshots.last?.time != current.time || snapshots.count == 0) {
+            if snapshots.count > 15 {
+                snapshots.remove(at: snapshots.count - 1)
+            }
+            
             snapshots.append(current)
             futureSnapshots = minutely
             chartView.reloadData()
-            print(snapshots)
+            
+            let date = Date(timeIntervalSince1970: TimeInterval(current.time))
+            
+            let dayTimePeriodFormatter = DateFormatter()
+            dayTimePeriodFormatter.dateFormat = "MMM dd YYYY hh:mm a"
+             let dateString = dayTimePeriodFormatter.string(from: date)
+            
+            print(dateString)
             print("=================================================")
         } else {
             print("================Already Exists===================")

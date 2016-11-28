@@ -29,7 +29,7 @@ class NetworkingManager {
         guard let _ = weatherDelegate else { return }
         
         self.getCurrentWeather()
-        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.getCurrentWeather), userInfo: nil, repeats: true);
+        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.getCurrentWeather), userInfo: nil, repeats: true);
     }
     
     @objc func getCurrentWeather() {
