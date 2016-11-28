@@ -237,6 +237,10 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         return orderedColors[Int(lineIndex)]
     }
     
+    func lineChartView(_ lineChartView: JBLineChartView!, shouldIgnoreSelectionAtLineIndex lineIndex: UInt) -> Bool {
+        return snapshots.count <= 1
+    }
+    
     //MARK: WeatherDataSource
     func next(current: WeatherSnapshot, minutely: [MinuteForecast]) {
         if(snapshots.last?.time != current.time || snapshots.count == 0) {
