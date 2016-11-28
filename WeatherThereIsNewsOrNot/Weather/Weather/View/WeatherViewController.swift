@@ -179,9 +179,9 @@ class WeatherViewController: UIViewController, JBLineChartViewDataSource, JBLine
         correspondingView.stopAnimating()
         correspondingView.animation = "pop"
         correspondingView.curve = "spring"
-        correspondingView.damping = 0.3
-        correspondingView.duration = 1.0
-        correspondingView.repeatCount = 2
+        correspondingView.scaleX = 1.2
+        correspondingView.scaleY = 1.2
+        correspondingView.duration = 2.0
         correspondingView.animate()
         
         return orderedColors[Int(lineIndex)]
